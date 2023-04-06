@@ -15,5 +15,17 @@ class AppColors{
 class AppConstants{
   static BorderRadius get borderRadius => BorderRadius.circular(20);
   static Radius get singleBorderRadius => const Radius.circular(20);
-  static String get logoPath => "assets/oyunveuygulamaakademisi.png";
+
+}
+
+class AppImages{
+  static String get logo => "assets/oyunveuygulamaakademisi.png";
+  static String get userPicture => "assets/user.png";
+
+  static String get code => "assets/lesson/code.png";
+  static String get girisimcilik => "assets/lesson/girisimcilik.png";
+  static String get hukuk => "assets/lesson/hukuk.png";
+  static String get ingilizce => "assets/lesson/ingilizce.png";
+  static String get oyunsanati => "assets/lesson/oyunsanati.png";
+  static String get insankaynaklari => "assets/lesson/insankaynaklari.png";
 }

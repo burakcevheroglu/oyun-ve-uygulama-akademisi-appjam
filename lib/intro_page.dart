@@ -22,7 +22,7 @@ class IntroPage extends StatelessWidget {
                 height: 150,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(AppConstants.logoPath)
+                    image: AssetImage(AppImages.logo)
                   )
                 ),
               ),

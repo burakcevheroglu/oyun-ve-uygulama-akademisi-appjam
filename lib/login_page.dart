@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(100),
                     image: DecorationImage(
-                      image: AssetImage(AppConstants.logoPath),
+                      image: AssetImage(AppImages.logo),
                       scale: 5
                     )
                   ),

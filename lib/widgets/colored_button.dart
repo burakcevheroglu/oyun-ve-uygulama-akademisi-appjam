@@ -38,7 +38,7 @@ class ColoredButtonWidget extends StatelessWidget {
               // TODO: Handle this case.
               break;
             case ColoredButtonEnums.login:
-              Get.to(() => const DashboardPage());
+              Get.offAll(const DashboardPage());
               // TODO: Handle this case.
               break;
           }
