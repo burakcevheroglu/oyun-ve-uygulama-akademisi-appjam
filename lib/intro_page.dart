@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/login_page.dart';
 
+import 'widgets/colored_button.dart';
+
 class IntroPage extends StatelessWidget {
   const IntroPage({Key? key}) : super(key: key);
 
@@ -40,10 +42,10 @@ class IntroPage extends StatelessWidget {
                   Text(textcontext, style: TextStyle(color: Colors.white.withAlpha(150)),),
                   const SizedBox(height: 20,),
                   Row(
-                    children: [
-                      Expanded(child: loginRegisterButton(true)),
-                      const SizedBox(width: 10,),
-                      Expanded(child: loginRegisterButton(false)),
+                    children: const [
+                      Expanded(child: ColoredButtonWidget(type: ColoredButtonEnums.introLogin,)),
+                      SizedBox(width: 10,),
+                      Expanded(child: ColoredButtonWidget(type: ColoredButtonEnums.introRegister,)),
                     ],
                   )
                 ],
@@ -55,25 +57,5 @@ class IntroPage extends StatelessWidget {
     );
   }
 
-  Container loginRegisterButton(bool isLogin) {
-    return Container(
-                      height: 55,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        color: (isLogin) ? AppColors.red : Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: TextButton(
-                        onPressed: () => Get.to(() => const LoginPage()),
-                        style: ButtonStyle(
-                            overlayColor:
-                            MaterialStateProperty.all((isLogin) ? AppColors.lightRed : null),
-                        ),
-                        child: Center(child:
-                        (isLogin) ? const Text('Giriş Yap', style: TextStyle(color: Colors.white, fontSize: 16),)
-                        : const Text('Kayıt Ol', style: TextStyle(color: Colors.black, fontSize: 16),)
-                        ),
-                      ),
-                    );
-  }
 }
+
