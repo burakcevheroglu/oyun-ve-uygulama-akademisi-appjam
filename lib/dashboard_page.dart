@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
+import 'package:oyunveuygulamaakademisi/youtube.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -39,6 +40,14 @@ class DashboardPage extends StatelessWidget {
                   girisimcilikWidget(title: "Girişimcilik", percent: 100, image: AppImages.girisimcilik, color: AppColors.yellow),
                   girisimcilikWidget(title: "Hukuk", percent: 70, image: AppImages.hukuk, color: AppColors.red),
                   girisimcilikWidget(title: "İnsan Kaynakları Eğitimleri", percent: 70, image: AppImages.insankaynaklari, color: AppColors.green),
+                  ElevatedButton(
+                    onPressed: ()  {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return youtubeVid();
+                      }));
+                    },
+                    child: Text('Dersler'),
+                  ),
                 ],
               ),
             )

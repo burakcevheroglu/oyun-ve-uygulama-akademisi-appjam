@@ -14,6 +14,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
   get: ^4.6.5
+  youtube_player_flutter: ^8.1.2
+  youtube_data_api: ^1.0.4
+  http: ^0.13.5
+
 
 dev_dependencies:
   flutter_test:
