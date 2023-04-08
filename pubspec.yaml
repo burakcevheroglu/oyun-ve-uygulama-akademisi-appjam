@@ -14,6 +14,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.3
   get: ^4.6.5
+  custom_navigation_bar: ^0.8.2
+  flutter_riverpod: ^2.3.4
 
 dev_dependencies:
   flutter_test:
