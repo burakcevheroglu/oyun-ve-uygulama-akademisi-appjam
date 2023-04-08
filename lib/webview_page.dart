@@ -59,16 +59,17 @@ class _HomePageState extends State<WebviewPage> {
       },
       child: Scaffold(
           appBar: AppBar(
+            backgroundColor: AppColors.blue,
             centerTitle: true,
             leading: IconButton(
               onPressed: () => Get.back(),
-              icon: const Icon(Icons.close, size: 30,),
+              icon: const Icon(Icons.close, size: 30, color: Colors.white,),
             ),
-            title: Text(widget.title),
+            title: Text(widget.title, style: TextStyle(color: Colors.white),),
           ),
           body: SafeArea(child: Stack(
             children: [
-              LinearProgressIndicator(value: _progress/100, color: AppColors.blue,),
+              LinearProgressIndicator(value: _progress/100, color: AppColors.yellow,),
               WebViewWidget(controller: controller,)
             ],
           ))

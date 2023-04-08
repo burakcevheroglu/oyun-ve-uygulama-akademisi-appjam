@@ -8,7 +8,9 @@ import 'package:otp_text_field/style.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
 import 'package:oyunveuygulamaakademisi/register_config_page.dart';
+import 'package:oyunveuygulamaakademisi/services/firebase_preferences.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'services/phoneauth.dart';
 
@@ -92,6 +94,9 @@ class OTPPage extends StatelessWidget {
                         final DocumentSnapshot ouaDoc = await FirebaseFirestore.instance.collection('oua').doc(userId).get();
 
                         if (ouaDoc.exists) {
+                          firebaseToShared();
+
+
                           Get.offAll(const DashboardPage());
                         } else {
                           Get.offAll(const RegisterConfig());

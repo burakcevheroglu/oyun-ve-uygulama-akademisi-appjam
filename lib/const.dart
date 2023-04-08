@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:oyunveuygulamaakademisi/courses_page.dart';
-import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
-import 'package:oyunveuygulamaakademisi/profile_page.dart';
 
 class AppColors{
   static Color get blue => const Color.fromARGB(255, 66, 131, 241);

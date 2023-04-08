@@ -11,7 +11,7 @@ class IntroPage extends StatelessWidget {
     const String textContext = "Oyun ve Uygulama Akademisi’nde, gençlere yeni dijital beceriler edinmelerini sağlayacak eğitimler sunarak Türkiye’deki nitelikli iş gücünün yetiştirilmesine katkı sunuyoruz. Gençlerin hızla gelişen Bilgi İletişim Teknolojileri çağında talep gören yazılım, oyun tasarımı, uygulama geliştirme, proje yönetimi, girişimcilik gibi farklı alanlarda yetkinlik kazanmasını ve böylece Türkiye’nin dijitalleşme sürecini hızlandırmayı hedefliyoruz.";
 
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           children: [

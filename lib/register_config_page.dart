@@ -8,6 +8,7 @@ import 'package:oyunveuygulamaakademisi/widgets/alert.dart';
 import 'package:oyunveuygulamaakademisi/widgets/custom_textfield.dart';
 
 import 'const.dart';
+import 'services/firebase_preferences.dart';
 
 TextEditingController _name = TextEditingController();
 TextEditingController _surname = TextEditingController();
@@ -151,7 +152,6 @@ class _RegisterConfigState extends State<RegisterConfig> {
 
                 String errors = validityCheck();
 
-                print(errors);
                 if(errors != ""){
                   showAlert(context, "Uyarı", errors);
                   return;
@@ -164,6 +164,8 @@ class _RegisterConfigState extends State<RegisterConfig> {
                   'isFieldFlutter': field,
                   'english': _wantEnglish
                 }, SetOptions(merge: true));
+
+                firebaseToShared();
 
                 // ignore: use_build_context_synchronously
                 showSnackbar(context, "Tercihlerin başarıyla kaydedildi");

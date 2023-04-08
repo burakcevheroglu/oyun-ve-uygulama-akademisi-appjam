@@ -1,13 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
 import 'package:oyunveuygulamaakademisi/widgets/colored_button.dart';
-
-FirebaseAuth _auth = FirebaseAuth.instance;
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

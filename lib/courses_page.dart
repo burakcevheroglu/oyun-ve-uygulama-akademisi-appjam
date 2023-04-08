@@ -31,7 +31,7 @@ class CoursesPage extends StatelessWidget {
               const SizedBox(height: 5,),
               Text("Hayalindeki oyunu veya uygulamayı tasarlamak için ihtiyacın olan eğitimler 1 Aralık’ta başlıyor. Eğitimlerin yanı sıra eğitmenlerle gerçekleşecek seanslarda merak ettiklerini sorabileceksin ve bu alanlarda uzmanlaşma fırsatın olacak!", style: TextStyle(color: Colors.black.withAlpha(100), fontSize: 12),),
               const SizedBox(height: 10,),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 200,
                 child: ListView(
@@ -49,7 +49,7 @@ class CoursesPage extends StatelessWidget {
               const SizedBox(height: 5,),
               Text("Coursera’da yer alan ve Türkiye’de ilk defa Türkçe olarak hazırlanan bu programa Akademi bursiyeri olarak hiçbir ücret ödemeden katılarak proje yönetimi konusunda uzmanlaşabilecek ve bu alanda bir kariyer sertifikası sahibi olabileceksin!", style: TextStyle(color: Colors.black.withAlpha(100), fontSize: 12),),
               const SizedBox(height: 10,),
-              Container(
+              SizedBox(
                   width: double.infinity,
                   height: 200,
                   child: ListView(
@@ -93,7 +93,7 @@ class CoursesPage extends StatelessWidget {
               const SizedBox(height: 5,),
               Text("Ocak’ta başlayan Girişimcilik Eğitimleri kapsamında bir teknoloji girişimcisinin ihtiyaç duyabileceği tüm finans, hukuk, temel girişimcilik gibi eğitimlerin tamamına erişebileceksin.", style: TextStyle(color: Colors.black.withAlpha(100), fontSize: 12),),
               const SizedBox(height: 10,),
-              Container(
+              SizedBox(
                   width: double.infinity,
                   height: 200,
                   child: ListView(

@@ -1,11 +1,12 @@
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
+import 'package:oyunveuygulamaakademisi/course_headers_page.dart';
 import 'package:oyunveuygulamaakademisi/menu_page.dart';
+import 'package:oyunveuygulamaakademisi/services/capitalize.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'profile_page.dart';
-import 'widgets/appbar.dart';
 import 'widgets/courseline.dart';
 
 
@@ -17,10 +18,36 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+
+  late SharedPreferences prefs;
+  late String phoneNumber;
+  late String name;
+  late String surname;
+  late bool isFieldFlutter;
+  late bool isEnglish;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    loadSharedPreferences();
+    super.initState();
+  }
+
+  Future<void> loadSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      phoneNumber = prefs.getString('phoneNumber')!;
+      name = prefs.getString('name')!;
+      surname = prefs.getString('surname')!;
+      isFieldFlutter = prefs.getBool('isFieldFlutter')!;
+      isEnglish = prefs.getBool('english')!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(),
+      appBar: customAppBar(capitalize(name)),
       body: Container(
         clipBehavior: Clip.none,
         width: double.infinity,
@@ -45,7 +72,7 @@ class _DashboardPageState extends State<DashboardPage> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 180,
                 child: ListView(
@@ -96,7 +123,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
                       image: AppImages.code,
                       color: AppColors.blue,
-                      percent: 77),
+                      percent: 77,),
                   CourseLineWidget(
                       title: "Oyun Sanati",
                       description:
@@ -187,7 +214,7 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  AppBar customAppBar() {
+  AppBar customAppBar(String name) {
     return AppBar(
       centerTitle: true,
       surfaceTintColor: Colors.transparent,
@@ -197,14 +224,14 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       title: Row(
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          Text(
+        children: [
+          const Text(
             'Selam, ',
             style: TextStyle(fontSize: 18),
           ),
           Text(
-            'Burak',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           )
         ],
       ),
