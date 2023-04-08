@@ -1,6 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
+import 'package:oyunveuygulamaakademisi/services/provider.dart';
 import 'package:oyunveuygulamaakademisi/widgets/colored_button.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,6 +17,10 @@ class LoginPage extends StatelessWidget {
     return  Scaffold(
       backgroundColor: AppColors.blue,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.chevron_left, color: Colors.white, size: 30,),
+        ),
         backgroundColor: AppColors.blue,
       ),
       body: Column(
@@ -46,18 +57,8 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                customTextField(true),
-                const SizedBox(height: 20,),
-                customTextField(false),
-                const SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    SizedBox(),
-                    Text('Şifreni mi unuttun?', style: TextStyle(fontWeight: FontWeight.bold),)
-                  ],
-                ),
-                const SizedBox(height: 50,),
+                customTextField(Icons.phone, "Telefon Numarası"),
+                const SizedBox(height: 40,),
                 const ColoredButtonWidget(type: ColoredButtonEnums.login),
                 const SizedBox(height: 20,),
                 Row(
@@ -78,27 +79,45 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Container customTextField(bool isEmail) {
+  Container customTextField(IconData icon, String title) {
     return Container(
                 width: double.infinity,
-                height: 50,
+                height: 65,
                 decoration: BoxDecoration(
                   color: AppColors.grey,
                   borderRadius: BorderRadius.circular(100)
                 ),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 5.0, right: 25),
-                    child: TextField(
-                      obscuringCharacter: '●',
-                      obscureText: !isEmail,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: (isEmail) ? "Email" : "Şifre",
-                        prefixIcon: (isEmail) ? const Icon(Icons.email_outlined) : const Icon(Icons.lock_outline),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 20,),
+                    const SizedBox(
+                      width: 40,
+                      height: 65,
+                      child: Center(child: Text("+90", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5.0, right: 25),
+                          child: TextField(
+                            controller: phoneController,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                              LengthLimitingTextInputFormatter(10),
+                            ],
+                            //obscuringCharacter: '●',
+                            //obscureText: !isEmail,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelText: title, //(isEmail) ? "Email" : "Şifre",
+                              //prefixIcon: Icon(icon)//(isEmail) ? const Icon(Icons.email_outlined) : const Icon(Icons.lock_outline),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               );
   }

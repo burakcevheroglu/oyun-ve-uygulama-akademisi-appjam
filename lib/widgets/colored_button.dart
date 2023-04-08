@@ -1,10 +1,17 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
+import 'package:oyunveuygulamaakademisi/intro_page.dart';
+import 'package:oyunveuygulamaakademisi/otp_page.dart';
+import 'package:oyunveuygulamaakademisi/services/provider.dart';
 
 import '../const.dart';
 import '../login_page.dart';
+import '../services/phoneauth.dart';
+
+
+const int _smsCodeTimeout = 60; //seconds
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 
 class ColoredButtonWidget extends StatelessWidget {
@@ -38,7 +45,33 @@ class ColoredButtonWidget extends StatelessWidget {
               // TODO: Handle this case.
               break;
             case ColoredButtonEnums.login:
-              Get.offAll(const DashboardPage());
+              if(phoneController.text.length == 10 && phoneController.text.substring(0,1) == "5"){
+                _auth.verifyPhoneNumber(
+                    phoneNumber: "+90${phoneController.text}",
+                    verificationCompleted: (credential) => print("doğrulama başarılı"),
+                    verificationFailed: (error) {
+                      phoneController.text="";
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const IntroPage()),
+                              (Route<dynamic> route) => false);
+                    },
+                    codeSent: (id, token) {
+                      verifyId = id;
+                      //Navigator.of(context).pop();
+                      phoneNumber = phoneController.text;
+                      phoneController.text="";
+                      Get.to(() => const OTPPage(), transition: Transition.cupertinoDialog);
+                    },
+                    codeAutoRetrievalTimeout: (id) => print("zaman aşımına uğradı"),
+                    timeout: const Duration(seconds: _smsCodeTimeout)
+                );
+              }
+              Get.to(() => const OTPPage());
+              // TODO: Handle this case.
+              break;
+            case ColoredButtonEnums.otpVerify:
               // TODO: Handle this case.
               break;
           }
@@ -56,4 +89,4 @@ class ColoredButtonWidget extends StatelessWidget {
   }
 }
 
-enum ColoredButtonEnums{ introLogin, introRegister, login}
+enum ColoredButtonEnums{ introLogin, introRegister, login, otpVerify}

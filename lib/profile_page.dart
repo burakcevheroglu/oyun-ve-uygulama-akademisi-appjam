@@ -2,26 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
+import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
+import 'package:oyunveuygulamaakademisi/menu_page.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
-import 'package:oyunveuygulamaakademisi/widgets/appbar.dart';
+import 'package:oyunveuygulamaakademisi/webview_page.dart';
 
 import 'widgets/courseline.dart';
 
 class ProfilePage extends ConsumerWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key, required this.isFromDashboard}) : super(key: key);
+
+  final bool isFromDashboard;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: (){
-            Get.back();
-            ref.read(navigationIndex.notifier).update((state) => 0);
-
-          },
-          icon: const Icon(Icons.chevron_left, size: 35,),
-        ),
+        leading: profileLeadingButton(ref, isFromDashboard),
         surfaceTintColor: Colors.transparent,
         title: const Text("Profil"),
       ),
@@ -42,21 +39,26 @@ class ProfilePage extends ConsumerWidget {
             const SizedBox(height: 5,),
             const Text("Flutter İle Uygulama Geliştirme"),
             const SizedBox(height: 30,),
-            Container(
-              height: 55,
-              decoration: BoxDecoration(
-                borderRadius: AppConstants.borderRadius,
-                color: AppColors.grey
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(width: 30,),
-                  Image.asset(AppImages.slack),
-                  const SizedBox(width: 20,),
-                  const Text("Topluluğa Katıl", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-                  const SizedBox(width: 30,),
-                ],
+            InkWell(
+              onTap: (){
+                Get.to(() => const WebviewPage(title: "Slack Kanalı", url: "https://join.slack.com/t/oyunveuygulama/shared_invite/zt-zv9d1lsn-njscscSjYoD~fk_hA84PHA"));
+              },
+              child: Container(
+                height: 55,
+                decoration: BoxDecoration(
+                  borderRadius: AppConstants.borderRadius,
+                  color: AppColors.grey
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 30,),
+                    Image.asset(AppImages.slack),
+                    const SizedBox(width: 20,),
+                    const Text("Topluluğa Katıl", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                    const SizedBox(width: 30,),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20,),
@@ -70,8 +72,8 @@ class ProfilePage extends ConsumerWidget {
               ),
               child: Row(
                 children: [
-                  InfoTile("Flutter İle", "Uygulama Geliştirme", AppImages.code),
-                  InfoTile("Yazılımcılar", "İçin İngilizce", AppImages.ingilizce),
+                  infoTile("Flutter İle", "Uygulama Geliştirme", AppImages.code),
+                  infoTile("Yazılımcılar", "İçin İngilizce", AppImages.ingilizce),
                 ],
               ),
             ),
@@ -81,7 +83,7 @@ class ProfilePage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Devam Eden Kurslar',
+                    'Bitirilen Kurslar',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: AppColors.blue,
@@ -114,11 +116,28 @@ class ProfilePage extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const AppBottomNavigationBar(),
+
     );
   }
 
-  Expanded InfoTile(String text1, String text2, String image) {
+  IconButton profileLeadingButton(WidgetRef ref, bool isFromDashboard) {
+    if(isFromDashboard){
+      return IconButton(
+        onPressed: (){
+          Get.back();
+        },
+        icon: const Icon(Icons.chevron_left, size: 30, color: Colors.black,),
+      );
+    }
+    else{
+      return IconButton(
+        onPressed: () => Get.to(() => const MenuPage(), transition: Transition.leftToRightWithFade, fullscreenDialog: true),
+        icon: const Icon(Icons.menu, size: 30, color: Colors.black,),
+      );
+    }
+  }
+
+  Expanded infoTile(String text1, String text2, String image) {
     return Expanded(child: Column(
                 children: [
                   Container(

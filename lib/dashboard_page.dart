@@ -1,7 +1,10 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
+import 'package:oyunveuygulamaakademisi/menu_page.dart';
 
+import 'profile_page.dart';
 import 'widgets/appbar.dart';
 import 'widgets/courseline.dart';
 
@@ -121,7 +124,6 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const AppBottomNavigationBar(),
     );
   }
 
@@ -187,15 +189,14 @@ class _DashboardPageState extends State<DashboardPage> {
 
   AppBar customAppBar() {
     return AppBar(
-      centerTitle: false,
+      centerTitle: true,
       surfaceTintColor: Colors.transparent,
-      leading: Container(
-        margin: const EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            image: DecorationImage(image: AssetImage(AppImages.userPicture))),
+      leading: IconButton(
+        onPressed: () => Get.to(() => const MenuPage(), transition: Transition.leftToRightWithFade, fullscreenDialog: true),
+        icon: const Icon(Icons.menu, size: 30, color: Colors.black,),
       ),
       title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: const [
           Text(
             'Selam, ',
@@ -207,11 +208,19 @@ class _DashboardPageState extends State<DashboardPage> {
           )
         ],
       ),
-      actions: const [
-        Icon(Icons.notifications_none_outlined),
-        SizedBox(
-          width: 20,
+      actions: [
+        InkWell(
+          onTap: () => Get.to(() => const ProfilePage(isFromDashboard: true), transition: Transition.rightToLeft, fullscreenDialog: true),
+          borderRadius: BorderRadius.circular(100),
+          child: Container(
+            width: 45,
+            height: 45,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                image: DecorationImage(image: AssetImage(AppImages.userPicture))),
+          ),
         ),
+        const SizedBox(width: 10,),
       ],
     );
   }

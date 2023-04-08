@@ -39,7 +39,7 @@ class AppBottomNavigationBar extends ConsumerWidget {
         ref.read(navigationIndex.notifier).update((state) => index);
         if(index==0) Get.offAll(const DashboardPage());
         if(index==1);
-        if(index==2) Get.to(() => const ProfilePage());
+        if(index==2) Get.to(() => const ProfilePage(isFromDashboard: true));
       },
     );
   }

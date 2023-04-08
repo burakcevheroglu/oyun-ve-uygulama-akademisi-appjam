@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
-import 'package:oyunveuygulamaakademisi/login_page.dart';
 
 import 'widgets/colored_button.dart';
 
@@ -10,7 +8,8 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String textcontext = "Oyun ve Uygulama Akademisi’nde, gençlere yeni dijital beceriler edinmelerini sağlayacak eğitimler sunarak Türkiye’deki nitelikli iş gücünün yetiştirilmesine katkı sunuyoruz. Gençlerin hızla gelişen Bilgi İletişim Teknolojileri çağında talep gören yazılım, oyun tasarımı, uygulama geliştirme, proje yönetimi, girişimcilik gibi farklı alanlarda yetkinlik kazanmasını ve böylece Türkiye’nin dijitalleşme sürecini hızlandırmayı hedefliyoruz.";
+    const String textContext = "Oyun ve Uygulama Akademisi’nde, gençlere yeni dijital beceriler edinmelerini sağlayacak eğitimler sunarak Türkiye’deki nitelikli iş gücünün yetiştirilmesine katkı sunuyoruz. Gençlerin hızla gelişen Bilgi İletişim Teknolojileri çağında talep gören yazılım, oyun tasarımı, uygulama geliştirme, proje yönetimi, girişimcilik gibi farklı alanlarda yetkinlik kazanmasını ve böylece Türkiye’nin dijitalleşme sürecini hızlandırmayı hedefliyoruz.";
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -39,7 +38,7 @@ class IntroPage extends StatelessWidget {
                 children: [
                   const Text("Akademi'ye Hoşgeldin", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),
                   const SizedBox(height: 10,),
-                  Text(textcontext, style: TextStyle(color: Colors.white.withAlpha(150)),),
+                  Text(textContext, style: TextStyle(color: Colors.white.withAlpha(150)),),
                   const SizedBox(height: 20,),
                   Row(
                     children: const [

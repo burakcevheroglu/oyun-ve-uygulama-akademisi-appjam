@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:oyunveuygulamaakademisi/courses_page.dart';
+import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
+import 'package:oyunveuygulamaakademisi/profile_page.dart';
 
 class AppColors{
   static Color get blue => const Color.fromARGB(255, 66, 131, 241);
@@ -30,4 +34,7 @@ class AppImages{
   static String get insankaynaklari => "assets/lesson/insankaynaklari.png";
   static String get finans => "assets/lesson/finans.png";
   static String get slack => "assets/slack.png";
+
+  static String get time => "assets/time.png";
 }
+
