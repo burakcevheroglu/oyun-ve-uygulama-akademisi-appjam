@@ -31,6 +31,8 @@ class AppImages{
   static String get finans => "assets/lesson/finans.png";
   static String get slack => "assets/slack.png";
 
+  static String get qanda => "assets/qanda.png";
+
   static String get time => "assets/time.png";
 }
 

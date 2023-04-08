@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/course_headers_page.dart';
 import 'package:oyunveuygulamaakademisi/menu_page.dart';
+import 'package:oyunveuygulamaakademisi/qanda_page.dart';
 import 'package:oyunveuygulamaakademisi/services/capitalize.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,9 +29,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    loadSharedPreferences();
     super.initState();
+    loadSharedPreferences();
   }
 
   Future<void> loadSharedPreferences() async {
@@ -51,106 +51,146 @@ class _DashboardPageState extends State<DashboardPage> {
       body: Container(
         clipBehavior: Clip.none,
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           clipBehavior: Clip.none,
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              monthlySumWidget(),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Teknoloji Girişimciliği',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.blue,
-                    fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 180,
-                child: ListView(
-                  clipBehavior: Clip.none,
-                  scrollDirection: Axis.horizontal,
+              qandaCard(),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GirisimcilikWidget(
-                        title: "Girişimcilik",
-                        percent: 100,
-                        image: AppImages.girisimcilik,
-                        color: AppColors.yellow),
-                    GirisimcilikWidget(
-                        title: "Finans",
-                        percent: 23,
-                        image: AppImages.finans,
-                        color: AppColors.blue),
-                    GirisimcilikWidget(
-                        title: "Hukuk",
-                        percent: 70,
-                        image: AppImages.hukuk,
-                        color: AppColors.red),
-                    GirisimcilikWidget(
-                        title: "İnsan Kaynakları",
-                        percent: 70,
-                        image: AppImages.insankaynaklari,
-                        color: AppColors.green),
+                    const SizedBox(height: 10,),
+                    monthlySumWidget(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Teknoloji Girişimciliği',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.blue,
+                          fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 180,
+                      child: ListView(
+                        clipBehavior: Clip.none,
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          GirisimcilikWidget(
+                              title: "Girişimcilik",
+                              percent: 100,
+                              image: AppImages.girisimcilik,
+                              color: AppColors.yellow),
+                          GirisimcilikWidget(
+                              title: "Finans",
+                              percent: 23,
+                              image: AppImages.finans,
+                              color: AppColors.blue),
+                          GirisimcilikWidget(
+                              title: "Hukuk",
+                              percent: 70,
+                              image: AppImages.hukuk,
+                              color: AppColors.red),
+                          GirisimcilikWidget(
+                              title: "İnsan Kaynakları",
+                              percent: 70,
+                              image: AppImages.insankaynaklari,
+                              color: AppColors.green),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Devam Eden Kurslar',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.blue,
+                          fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: [
+                        CourseLineWidget(
+                            title: "Flutter Hazırlık",
+                            description:
+                                "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
+                            image: AppImages.code,
+                            color: AppColors.blue,
+                            percent: 77,),
+                        CourseLineWidget(
+                            title: "Oyun Sanati",
+                            description:
+                                "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin.",
+                            image: AppImages.oyunsanati,
+                            color: AppColors.blue,
+                            percent: 13),
+                        CourseLineWidget(
+                            title: "Yazılımcılar İçin İngilizce",
+                            description:
+                                "Mesleki terimleri öğrenerek hem Flutter hem Unity için gerekli olan dil yeterliliklerini öğrenin.",
+                            image: AppImages.ingilizce,
+                            color: AppColors.green,
+                            percent: 56),
+                        CourseLineWidget(
+                            title: "Girişimcilik",
+                            description:
+                                "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
+                            image: AppImages.girisimcilik,
+                            color: AppColors.yellow,
+                            percent: 100)
+                      ],
+                    )
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Devam Eden Kurslar',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.blue,
-                    fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Column(
-                children: [
-                  CourseLineWidget(
-                      title: "Flutter Hazırlık",
-                      description:
-                          "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
-                      image: AppImages.code,
-                      color: AppColors.blue,
-                      percent: 77,),
-                  CourseLineWidget(
-                      title: "Oyun Sanati",
-                      description:
-                          "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin.",
-                      image: AppImages.oyunsanati,
-                      color: AppColors.blue,
-                      percent: 13),
-                  CourseLineWidget(
-                      title: "Yazılımcılar İçin İngilizce",
-                      description:
-                          "Mesleki terimleri öğrenerek hem Flutter hem Unity için gerekli olan dil yeterliliklerini öğrenin.",
-                      image: AppImages.ingilizce,
-                      color: AppColors.green,
-                      percent: 56),
-                  CourseLineWidget(
-                      title: "Girişimcilik",
-                      description:
-                          "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
-                      image: AppImages.girisimcilik,
-                      color: AppColors.yellow,
-                      percent: 100)
-                ],
-              )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  InkWell qandaCard() {
+    return InkWell(
+      onTap: () => Get.to(() => const QAndAPage()),
+      child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: AppColors.green,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Image.asset(AppImages.qanda),
+                          ),
+                          SizedBox(width: 20,),
+                          Expanded(child: const Text("Bu akşam saat 20.00'da Unity soru cevap buluşmasını kaçırma!", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Text("Yayında cevaplanmasını istediğin soruları buraya tıklayarak sorabilirsin.", style: TextStyle(color: Colors.white.withAlpha(200)),)
+                    ],
+                  ),
+                ),
+              ),
     );
   }
 
