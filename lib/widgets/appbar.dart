@@ -1,6 +1,9 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
+import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
+import 'package:oyunveuygulamaakademisi/profile_page.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
 
 import '../const.dart';
@@ -32,7 +35,11 @@ class AppBottomNavigationBar extends ConsumerWidget {
       ],
       currentIndex: ref.watch(navigationIndex),
       onTap: (index) {
+        if(ref.read(navigationIndex) == index) return;
         ref.read(navigationIndex.notifier).update((state) => index);
+        if(index==0) Get.offAll(const DashboardPage());
+        if(index==1);
+        if(index==2) Get.to(() => const ProfilePage());
       },
     );
   }

@@ -29,4 +29,5 @@ class AppImages{
   static String get oyunsanati => "assets/lesson/oyunsanati.png";
   static String get insankaynaklari => "assets/lesson/insankaynaklari.png";
   static String get finans => "assets/lesson/finans.png";
+  static String get slack => "assets/slack.png";
 }
