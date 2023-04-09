@@ -23,10 +23,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
   late SharedPreferences prefs;
   late String phoneNumber;
-  late String name;
-  late String surname;
-  late bool isFieldFlutter;
-  late bool isEnglish;
+  String name="";
+  String surname="";
+  bool isFieldFlutter = true;
+  bool isEnglish = false;
 
   @override
   void initState() {

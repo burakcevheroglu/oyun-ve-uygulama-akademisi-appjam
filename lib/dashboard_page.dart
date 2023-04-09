@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
-import 'package:oyunveuygulamaakademisi/course_headers_page.dart';
 import 'package:oyunveuygulamaakademisi/menu_page.dart';
 import 'package:oyunveuygulamaakademisi/qanda_page.dart';
 import 'package:oyunveuygulamaakademisi/services/capitalize.dart';
@@ -22,8 +23,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   late SharedPreferences prefs;
   late String phoneNumber;
-  late String name;
-  late String surname;
+  String name="";
+  String surname="";
   late bool isFieldFlutter;
   late bool isEnglish;
 
@@ -31,6 +32,16 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     loadSharedPreferences();
+    FirebaseFirestore.instance
+        .collection('oua')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      setState(() {
+        name = documentSnapshot.get('name');
+        surname = documentSnapshot.get('surname');
+      });
+    });
   }
 
   Future<void> loadSharedPreferences() async {
@@ -55,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
           clipBehavior: Clip.none,
           child: Column(
             children: [
-              qandaCard(),
+              qandaCard(capitalize("$name $surname")),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -162,9 +173,9 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  InkWell qandaCard() {
+  InkWell qandaCard(String userName) {
     return InkWell(
-      onTap: () => Get.to(() => const QAndAPage()),
+      onTap: () => Get.to(() => QAndAPage(userName: userName,)),
       child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -181,11 +192,11 @@ class _DashboardPageState extends State<DashboardPage> {
                             width: 50,
                             child: Image.asset(AppImages.qanda),
                           ),
-                          SizedBox(width: 20,),
-                          Expanded(child: const Text("Bu akşam saat 20.00'da Unity soru cevap buluşmasını kaçırma!", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
+                          const SizedBox(width: 20,),
+                          const Expanded(child: Text("Bu akşam saat 20.00'da Unity soru cevap buluşmasını kaçırma!", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
                         ],
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Text("Yayında cevaplanmasını istediğin soruları buraya tıklayarak sorabilirsin.", style: TextStyle(color: Colors.white.withAlpha(200)),)
                     ],
                   ),
