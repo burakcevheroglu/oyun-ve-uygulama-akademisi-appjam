@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
+import 'widgets/youtube_icon.dart';
 import 'youtube_video.dart';
 
 class MyPlaylistPage extends StatefulWidget {
@@ -57,8 +58,10 @@ class _MyPlaylistPageState extends State<MyPlaylistPage> {
               itemBuilder: (context, index) {
                 final video = _videos[index];
                 return ListTile(
-                  leading: CircleAvatar(child: Text("${index+1}"),),
+                  leading: youtubeIcon(),
                   title: Text(video.title),
+                  subtitle: Text(videoLength(video.duration)),
+                  trailing: Icon(Icons.chevron_right, size: 30,),
                   onTap: () {
                     // do something with the tapped video
                     Navigator.push(
@@ -82,6 +85,7 @@ class _MyPlaylistPageState extends State<MyPlaylistPage> {
     );
   }
 
+
   Future<List<Video>> _loadPlaylist() async {
     final playlistId = PlaylistId.parsePlaylistId(widget.playlistUrl);
     final yt = YoutubeExplode();
@@ -90,4 +94,23 @@ class _MyPlaylistPageState extends State<MyPlaylistPage> {
     yt.close();
     return videos;
   }
+
+  String videoLength(Duration? duration) {
+    String minutes = "";
+    String seconds = "";
+
+    if (duration != null) {
+      int totalMinutes = duration.inMinutes;
+      int remainingSeconds = duration.inSeconds % 60;
+
+      minutes = "${totalMinutes.toString().padLeft(2, '0')} dakika";
+      seconds = "${remainingSeconds.toString().padLeft(2, '0')} saniye";
+    } else {
+      minutes = "00 dakika";
+      seconds = "00 saniye";
+    }
+
+    return "$minutes  $seconds";
+  }
+
 }

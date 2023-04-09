@@ -146,8 +146,8 @@ class _QAndAPageState extends State<QAndAPage> {
                                 );
                               }
                               DocumentSnapshot comment = snapshot.data!.docs[index];
-                              return CommentWidget(
-                                  name: comment['name'], text: comment['text']);
+                              Timestamp? ts = comment['timestamp'];
+                              return CommentWidget(name: comment['name'], text: comment['text'], timestamp: ts,);
                             },
                           );
                         },
@@ -162,6 +162,7 @@ class _QAndAPageState extends State<QAndAPage> {
       ),
     );
   }
+
 
   Widget eventInformation() {
     return Column(
@@ -214,14 +215,28 @@ class CommentWidget extends StatelessWidget {
   const CommentWidget({
     super.key,
     required this.name,
-    required this.text,
+    required this.text, required this.timestamp,
   });
 
   final String name;
   final String text;
+  final Timestamp? timestamp;
 
   @override
   Widget build(BuildContext context) {
+    String date = "";
+    print("ts: $timestamp");
+    if (timestamp != null) {
+      // timestamp değeri null değilse, zaman farkını hesapla
+      int unixTimestamp = timestamp!.seconds;
+      date = _timeDifference(unixTimestamp);
+    }
+    else{
+      print("asadsadsada");
+    }
+
+
+
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       width: double.infinity,
@@ -252,6 +267,9 @@ class CommentWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 )),
+                const SizedBox(width: 10,),
+                SizedBox(width: 100,child: Text(date, style: TextStyle(fontSize: 12, color: Colors.white.withAlpha(200)),))
+
               ],
             ),
             const SizedBox(
@@ -349,5 +367,28 @@ class AddQuestionWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+String _timeDifference(int timestamp) {
+  var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+  var now = DateTime.now();
+  var difference = now.difference(date);
+
+  if (difference.inDays > 1) {
+    return '${difference.inDays} gün önce';
+  } else if (difference.inDays == 1) {
+    return '1 gün önce';
+  } else if (difference.inHours > 1) {
+    return '${difference.inHours} saat önce';
+  } else if (difference.inHours == 1) {
+    return '1 saat önce';
+  } else if (difference.inMinutes > 1) {
+    return '${difference.inMinutes} dakika önce';
+  } else if (difference.inMinutes == 1) {
+    return '1 dakika önce';
+  } else {
+    return 'Birkaç saniye önce';
   }
 }

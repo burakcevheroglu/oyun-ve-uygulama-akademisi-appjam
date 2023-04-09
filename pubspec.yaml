@@ -26,6 +26,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   flutter_html: ^3.0.0-alpha.6
   comment_tree: ^0.3.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

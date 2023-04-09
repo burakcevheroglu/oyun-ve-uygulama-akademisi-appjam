@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/widgets/alert.dart';
+import 'package:oyunveuygulamaakademisi/widgets/youtube_icon.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -16,7 +17,6 @@ class VideoPlayerPage extends StatefulWidget {
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
   late YoutubePlayerController _controller;
   late Future<Video> _video;
-  bool _isNearEnd = false;
 
   @override
   void initState() {
@@ -75,7 +75,16 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   },
                 ),
                 const SizedBox(height: 16),
-                Text(snapshot.data!.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    children: [
+                      youtubeIcon(),
+                      const SizedBox(width: 10,),
+                      Expanded(child: Text(snapshot.data!.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
+                    ],
+                  ),
+                ),
                 const Divider(),
                 Expanded(
                   child: Padding(
