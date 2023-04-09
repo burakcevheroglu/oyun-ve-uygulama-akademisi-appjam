@@ -61,7 +61,7 @@ class _MyPlaylistPageState extends State<MyPlaylistPage> {
                   leading: youtubeIcon(),
                   title: Text(video.title),
                   subtitle: Text(videoLength(video.duration)),
-                  trailing: Icon(Icons.chevron_right, size: 30,),
+                  trailing: const Icon(Icons.chevron_right, size: 30,),
                   onTap: () {
                     // do something with the tapped video
                     Navigator.push(

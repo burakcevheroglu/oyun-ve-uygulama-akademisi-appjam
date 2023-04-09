@@ -48,6 +48,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        actions: [
+          youtubeIcon(),
+          const SizedBox(width: 10,),
+        ],
         title: FutureBuilder<Video>(
           future: _video,
           builder: (context, snapshot) {
@@ -79,8 +84,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
-                      youtubeIcon(),
-                      const SizedBox(width: 10,),
                       Expanded(child: Text(snapshot.data!.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)),
                     ],
                   ),
@@ -89,47 +92,60 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: AppColors.grey,
-                              borderRadius: BorderRadius.circular(100)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Row(
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Opacity(opacity: 0.1,child: Image.asset(AppImages.logo)),
+                        ),
+                        SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Column(
                                 children: [
-                                  SizedBox(width: 25, height: 25,child: CircleAvatar(backgroundColor: AppColors.green,child: const Icon(Icons.person, size: 20,),)),
-                                  const SizedBox(width: 20,),
-                                  const Expanded(child: TextField(
-                                    autocorrect: false,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Yorum ekleyin...',
+                                  Container(
+                                    width: double.infinity,
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.grey,
+                                      borderRadius: BorderRadius.circular(100)
                                     ),
-                                  )
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(width: 25, height: 25,child: CircleAvatar(backgroundColor: AppColors.green,child: const Icon(Icons.person, size: 20,),)),
+                                          const SizedBox(width: 20,),
+                                          const Expanded(child: TextField(
+                                            autocorrect: false,
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: 'Yorum ekleyin...',
+                                            ),
+                                          )
+                                          ),
+                                          const SizedBox(width: 20,),
+                                          TextButton(onPressed: (){}, child: const Text("Yorum yap")),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(width: 20,),
-                                  TextButton(onPressed: (){}, child: const Text("Yorum yap")),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 30,),
-                          commentTile("Burak Taha", "(4 gün önce)", "Dakika 3'teki kodun mantığı ne? Anlayamadım..", 5),
-                          const Divider(thickness: .5,),
-                          commentTile("Enes Cevher", "(5 saat önce)", "Bu ders izlediğim en iyi derslerden biriydi", 1),
-                          const Divider(thickness: .5,),
-                          commentTile("Selen Ela", "(2 hafta önce)", "State managementa geçmek için sabırsızlanıyorum", 4),
-                          const Divider(thickness: .5,),
-                          commentTile("Yağmur Şeker", "(3 gün önce)", "güzeldi", 2),
+                                  const SizedBox(height: 30,),
+                                  commentTile("Burak Taha", "(4 gün önce)", "Dakika 3'teki kodun mantığı ne? Anlayamadım..", 5),
+                                  const Divider(thickness: .5,),
+                                  commentTile("Enes Cevher", "(5 saat önce)", "Bu ders izlediğim en iyi derslerden biriydi", 1),
+                                  const Divider(thickness: .5,),
+                                  commentTile("Selen Ela", "(2 hafta önce)", "State managementa geçmek için sabırsızlanıyorum", 4),
+                                  const Divider(thickness: .5,),
+                                  commentTile("Yağmur Şeker", "(3 gün önce)", "güzeldi", 2),
 
-                        ]
-                      ),
+                                ]
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -146,8 +162,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     );
   }
 
-  Container commentTile(String name, String time, String text, int comment) {
-    return Container(
+  SizedBox commentTile(String name, String time, String text, int comment) {
+    return SizedBox(
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

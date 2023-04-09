@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "469980081128-23aip6p07u7kmgnq7k7qfpuhc47mt0fl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akademi.oyunveuygulama",
+            "certificate_hash": "4864c7658e6332512d519cd905b568c55b7c15de"
+          }
+        },
+        {
           "client_id": "469980081128-p71rq1loe4djb4g6htkmsepci6s6967h.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "469980081128-p71rq1loe4djb4g6htkmsepci6s6967h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "469980081128-7ds6l3dcnq9qrrmigde763k7p0ja3dvd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.akademi.oyunveuygulama"
+              }
             }
           ]
         }
