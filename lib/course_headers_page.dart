@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:oyunveuygulamaakademisi/trivia_page.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 import 'widgets/youtube_icon.dart';
@@ -57,22 +59,24 @@ class _MyPlaylistPageState extends State<MyPlaylistPage> {
               itemCount: _videos.length,
               itemBuilder: (context, index) {
                 final video = _videos[index];
-                return ListTile(
-                  leading: youtubeIcon(),
-                  title: Text(video.title),
-                  subtitle: Text(videoLength(video.duration)),
-                  trailing: const Icon(Icons.chevron_right, size: 30,),
-                  onTap: () {
-                    // do something with the tapped video
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VideoPlayerPage(videoId: video.id.value),
-                      ),
-                    );
-
-                  },
-                );
+                if(index%2==0){
+                  return ListTile(
+                    leading: youtubeIcon(),
+                    title: Text(video.title),
+                    subtitle: Text(videoLength(video.duration)),
+                    trailing: const Icon(Icons.chevron_right, size: 30,),
+                    onTap: () => Get.to(() => VideoPlayerPage(videoId: video.id.value))
+                  );
+                }
+                else{
+                  String title = 'Ders Videosu Soru ${(index/2+0.5).toString().replaceAll(".0", "")}';
+                  return ListTile( // videoTitle: video.title, pageTitle: title
+                    onTap: () => Get.to(() => TriviaPage(pageTitle: title,)),
+                    leading: const Icon(Icons.question_mark),
+                    title: Text(title),
+                    subtitle: Text(video.title, maxLines: 1, overflow: TextOverflow.ellipsis,),
+                  );
+                }
               },
             );
           } else if (snapshot.hasError) {

@@ -5,12 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
 import 'package:oyunveuygulamaakademisi/intro_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  _initOneSignal();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
       ).copyWith(
         appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(color: Colors.black),
+          systemOverlayStyle: SystemUiOverlayStyle.dark
         ),
       ),
       home: StreamBuilder<User?>(
@@ -69,3 +72,8 @@ MaterialColor primarySwatchBlue = MaterialColor(_bluePrimaryValue, <int, Color>{
 });
 
 int _bluePrimaryValue = 0xFF4283F1;
+
+void _initOneSignal() async {
+  await OneSignal.shared.setAppId("b2b6aef0-5b19-44a8-badc-624ed9a51108");
+  await OneSignal.shared.promptUserForPushNotificationPermission();
+}

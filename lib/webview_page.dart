@@ -65,7 +65,7 @@ class _HomePageState extends State<WebviewPage> {
               onPressed: () => Get.back(),
               icon: const Icon(Icons.close, size: 30, color: Colors.white,),
             ),
-            title: Text(widget.title, style: TextStyle(color: Colors.white),),
+            title: Text(widget.title, style: const TextStyle(color: Colors.white),),
           ),
           body: SafeArea(child: Stack(
             children: [

@@ -8,7 +8,8 @@ import '../const.dart';
 class SquareCourseWidget extends StatelessWidget {
   const SquareCourseWidget({
     super.key, required this.title, required this.desc, required this.time, required this.color, this.func, this.width = 200,
-    this.defaultUrl = "https://www.youtube.com/playlist?list=PLeqL-9zPf1PQxdGvLsLbJhQ6lzfqV5aIt"
+    this.defaultUrl = "https://www.youtube.com/playlist?list=PLeqL-9zPf1PQxdGvLsLbJhQ6lzfqV5aIt",
+    this.rightMargin = 15
   });
 
   final String title;
@@ -18,12 +19,13 @@ class SquareCourseWidget extends StatelessWidget {
   final Function? func;
   final double width;
   final String defaultUrl;
+  final double rightMargin;
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 25),
+      margin: EdgeInsets.only(right: rightMargin),
       width: width,
       height: 200,
       decoration: BoxDecoration(

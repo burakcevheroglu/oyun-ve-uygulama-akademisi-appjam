@@ -113,7 +113,7 @@ class CoursesPage extends StatelessWidget {
               const SizedBox(height: 5,),
               Text("Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", style: TextStyle(color: Colors.black.withAlpha(100), fontSize: 12),),
               const SizedBox(height: 10,),
-              SquareCourseWidget(title: "Yazılımcılar İçin İngilizce Eğitimi", desc: "Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", time: 1693, color: AppColors.green, width: double.infinity,)
+              SquareCourseWidget(title: "Yazılımcılar İçin İngilizce Eğitimi", desc: "Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", time: 1693, color: AppColors.green, width: double.infinity, rightMargin: 0,)
             ],
           ),
         ),

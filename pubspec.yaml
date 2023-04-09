@@ -28,6 +28,7 @@ dependencies:
   comment_tree: ^0.3.0
   intl: ^0.17.0
   flutter_launcher_icons: ^0.13.0
+  onesignal_flutter: ^3.5.1
 
 dev_dependencies:
   flutter_test:

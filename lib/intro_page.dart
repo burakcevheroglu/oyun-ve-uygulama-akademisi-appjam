@@ -55,6 +55,5 @@ class IntroPage extends StatelessWidget {
       ),
     );
   }
-
 }
 

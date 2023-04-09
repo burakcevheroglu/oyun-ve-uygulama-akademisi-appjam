@@ -8,6 +8,6 @@ Container youtubeIcon() {
         color: Colors.grey,
         borderRadius: BorderRadius.circular(5)
     ),
-    child: Center(child: Icon(Icons.play_arrow, color: Colors.white, size: 20,),),
+    child: const Center(child: Icon(Icons.play_arrow, color: Colors.white, size: 20,),),
   );
 }

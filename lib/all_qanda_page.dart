@@ -64,37 +64,40 @@ class AllQAndAPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.watch_later_outlined),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      time,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Row(
-                  children: [
-                    const Icon(Icons.date_range_outlined),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      date,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.watch_later_outlined),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        time,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.date_range_outlined),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        date,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             )
           ],
         ),

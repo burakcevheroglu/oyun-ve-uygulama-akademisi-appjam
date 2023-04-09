@@ -21,7 +21,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   late YoutubePlayerController _controller;
   late Future<Video> _video;
   bool _showAppBar = true;
-  bool _isPlayerReady = false;
 
 
   @override
@@ -117,11 +116,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                         ),
                         RemainingDuration(),
                       ],
-                      onReady: () {
-                        _isPlayerReady = true;
-                      },
-                      onEnded: (data) {
-                      },
                     ),
                     onEnterFullScreen: () {
                       setState(() {

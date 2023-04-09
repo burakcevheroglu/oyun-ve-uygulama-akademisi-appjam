@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// alert göster
 void showAlert(BuildContext context, String title, String message) {
   showDialog(
     context: context,
@@ -20,6 +22,7 @@ void showAlert(BuildContext context, String title, String message) {
   );
 }
 
+// snackbar göster
 void showSnackbar(BuildContext context, String message) {
   final snackBar = SnackBar(
     content: Text(message),

@@ -52,16 +52,13 @@ class ColoredButtonWidget extends StatelessWidget {
                     verificationCompleted: (credential) => print("doğrulama başarılı"),
                     verificationFailed: (error) {
                       phoneController.text="";
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const IntroPage()),
-                              (Route<dynamic> route) => false);
+
+                      Get.offAll(const IntroPage());
+
                       showSnackbar(context, error.toString());
                     },
                     codeSent: (id, token) {
                       verifyId = id;
-                      //Navigator.of(context).pop();
                       phoneNumber = phoneController.text;
                       phoneController.text="";
                       Get.to(() => const OTPPage(), transition: Transition.cupertinoDialog);

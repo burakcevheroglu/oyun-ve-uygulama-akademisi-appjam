@@ -10,7 +10,6 @@ import 'package:oyunveuygulamaakademisi/dashboard_page.dart';
 import 'package:oyunveuygulamaakademisi/register_config_page.dart';
 import 'package:oyunveuygulamaakademisi/services/firebase_preferences.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'services/phoneauth.dart';
 
