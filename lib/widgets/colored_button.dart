@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/intro_page.dart';
 import 'package:oyunveuygulamaakademisi/otp_page.dart';
 import 'package:oyunveuygulamaakademisi/services/provider.dart';
+import 'package:oyunveuygulamaakademisi/widgets/alert.dart';
 
 import '../const.dart';
 import '../login_page.dart';
@@ -68,7 +69,9 @@ class ColoredButtonWidget extends StatelessWidget {
                     timeout: const Duration(seconds: _smsCodeTimeout)
                 );
               }
-              Get.to(() => const OTPPage());
+              else{
+                showSnackbar(context, "Lütfen numaranı düzgün bir biçimde gir.");
+              }
               // TODO: Handle this case.
               break;
             case ColoredButtonEnums.otpVerify:

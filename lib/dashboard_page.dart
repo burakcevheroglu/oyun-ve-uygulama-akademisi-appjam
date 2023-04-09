@@ -6,8 +6,10 @@ import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/menu_page.dart';
 import 'package:oyunveuygulamaakademisi/qanda_page.dart';
 import 'package:oyunveuygulamaakademisi/services/capitalize.dart';
+import 'package:oyunveuygulamaakademisi/services/phoneauth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'course_headers_page.dart';
 import 'profile_page.dart';
 import 'widgets/courseline.dart';
 
@@ -43,6 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
       setState(() {
         name = documentSnapshot.get('name');
         surname = documentSnapshot.get('surname');
+        globalUserName = capitalize("$name $surname");
       });
     });
     getLastDocumentTitle();
@@ -159,7 +162,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                 "Flutter ile mobil, web ve masaüstü uygulamaları geliştirmeye başlayın.",
                             image: AppImages.code,
                             color: AppColors.blue,
-                            percent: 77,),
+                            percent: 77,
+                            videoUrl: "https://www.youtube.com/playlist?list=PLCx8WctAcmdDjCsrka8dLGbeMWdrbP6vY",
+                        ),
                         CourseLineWidget(
                             title: "Oyun Sanati",
                             description:
@@ -353,66 +358,70 @@ class GirisimcilikWidget extends StatelessWidget {
             boxShadow: const [
               BoxShadow(blurRadius: 10, spreadRadius: -5, offset: Offset(0, 4))
             ]),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 70,
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(image))),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: color,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      'Tamamlanan: $percent%',
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 8,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: percent,
-                              child: Container(
-                                color: color,
-                              )),
-                          Expanded(
-                              flex: (100 - percent),
-                              child: Container(
-                                color: AppColors.grey,
-                              )),
-                        ],
-                      ),
-                    )
-                  ],
+        child: InkWell(
+          onTap: () => Get.to(() => const MyPlaylistPage(playlistUrl: "https://www.youtube.com/playlist?list=PLeqL-9zPf1PQxdGvLsLbJhQ6lzfqV5aIt",)),
+          borderRadius: BorderRadius.circular(100),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 70,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(image))),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: color,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Tamamlanan: $percent%',
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 8,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: percent,
+                                child: Container(
+                                  color: color,
+                                )),
+                            Expanded(
+                                flex: (100 - percent),
+                                child: Container(
+                                  color: AppColors.grey,
+                                )),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

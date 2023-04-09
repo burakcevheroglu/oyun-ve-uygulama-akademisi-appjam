@@ -87,7 +87,6 @@ class LoginPage extends StatelessWidget {
                   children: [
                     const SizedBox(width: 20,),
                     const SizedBox(
-                      width: 40,
                       height: 65,
                       child: Center(child: Text("+90", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),),
                     ),

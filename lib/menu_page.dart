@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oyunveuygulamaakademisi/all_qanda_page.dart';
 import 'package:oyunveuygulamaakademisi/intro_page.dart';
 import 'const.dart';
 import 'courses_page.dart';
@@ -64,6 +65,11 @@ List<Map<String, dynamic>> menuItems = [
     "title" : "Ana Sayfa",
     "icon" : Icons.home,
     "function" : () => Get.offAll(const DashboardPage(), transition: Transition.rightToLeft, fullscreenDialog: true)
+  },
+  {
+    "title" : "Etkinlikler",
+    "icon" : Icons.event,
+    "function" : () => Get.offAll(const AllQAndAPage(isButtonBack: false,), transition: Transition.rightToLeft, fullscreenDialog: true)
   },
   {
     "title" : "Eğitimler",

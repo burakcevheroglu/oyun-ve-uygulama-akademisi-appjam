@@ -32,7 +32,8 @@ class _QAndAPageState extends State<QAndAPage> {
   }
 
   Future<void> _addComment(String userName) async {
-    String text = _textController.text;
+    String text = _textController.text.replaceAll(RegExp(r'(\n\s*){2,}'), '\n'); // aralardaki boş satırları kaldır
+
 
     await FirebaseFirestore.instance
         .collection('questionandanswer')
@@ -68,7 +69,7 @@ class _QAndAPageState extends State<QAndAPage> {
         surfaceTintColor: Colors.transparent,
         title: const Text("Soru Tahtası"),
         actions: (widget.showOldList) ? [
-          IconButton(onPressed: () => Get.to(() => AllQAndAPage(userName: widget.userName,)), icon: const Icon(Icons.list, size: 30,)),
+          IconButton(onPressed: () => Get.to(() => const AllQAndAPage(isButtonBack: true,)), icon: const Icon(Icons.list, size: 30,)),
           const SizedBox(width: 10,),
         ] : []
       ),
@@ -225,15 +226,12 @@ class CommentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String date = "";
-    print("ts: $timestamp");
     if (timestamp != null) {
       // timestamp değeri null değilse, zaman farkını hesapla
-      int unixTimestamp = timestamp!.seconds;
-      date = _timeDifference(unixTimestamp);
+      int timeStampInSeconds = timestamp!.seconds;
+      date = _timeDifference(timeStampInSeconds);
     }
-    else{
-      print("asadsadsada");
-    }
+    
 
 
 

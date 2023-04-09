@@ -9,6 +9,7 @@ import 'package:oyunveuygulamaakademisi/webview_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'widgets/courseline.dart';
+import 'widgets/leading_button.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({Key? key, required this.isFromDashboard}) : super(key: key);
@@ -51,7 +52,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: profileLeadingButton(ref, widget.isFromDashboard),
+        leading: profileLeadingButton(widget.isFromDashboard),
         surfaceTintColor: Colors.transparent,
         title: const Text("Profil"),
         actions: [
@@ -178,30 +179,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   }
 }
 
-IconButton profileLeadingButton(WidgetRef ref, bool isFromDashboard) {
-  if (isFromDashboard) {
-    return IconButton(
-      onPressed: () {
-        Get.back();
-      },
-      icon: const Icon(
-        Icons.chevron_left,
-        size: 30,
-        color: Colors.black,
-      ),
-    );
-  } else {
-    return IconButton(
-      onPressed: () => Get.to(() => const MenuPage(),
-          transition: Transition.leftToRightWithFade, fullscreenDialog: true),
-      icon: const Icon(
-        Icons.menu,
-        size: 30,
-        color: Colors.black,
-      ),
-    );
-  }
-}
+
 
 Expanded infoTile(String text1, String text2, String image) {
   return Expanded(

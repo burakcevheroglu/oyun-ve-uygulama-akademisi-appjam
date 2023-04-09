@@ -13,6 +13,7 @@ class CourseLineWidget extends StatelessWidget {
     required this.image,
     required this.color,
     required this.percent,
+    this.videoUrl = "https://www.youtube.com/playlist?list=PLeqL-9zPf1PQxdGvLsLbJhQ6lzfqV5aIt"
   });
 
   final String title;
@@ -20,6 +21,9 @@ class CourseLineWidget extends StatelessWidget {
   final String image;
   final Color color;
   final int percent;
+  final String videoUrl;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class CourseLineWidget extends StatelessWidget {
           ]),
       child: InkWell(
         onTap: (){
-          Get.to(() => const MyPlaylistPage(playlistUrl: "https://www.youtube.com/playlist?list=PLCx8WctAcmdDjCsrka8dLGbeMWdrbP6vY"));
+          Get.to(() => MyPlaylistPage(playlistUrl: videoUrl));
         },
         borderRadius: BorderRadius.circular(100),
         child: Row(

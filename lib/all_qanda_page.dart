@@ -2,19 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/qanda_page.dart';
+import 'package:oyunveuygulamaakademisi/services/phoneauth.dart';
+import 'package:oyunveuygulamaakademisi/widgets/leading_button.dart';
 
 class AllQAndAPage extends StatelessWidget {
-  const AllQAndAPage({Key? key, required this.userName}) : super(key: key);
+  const AllQAndAPage({Key? key, required this.isButtonBack}) : super(key: key);
 
-  final String userName;
+  final bool isButtonBack;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
+        leading: profileLeadingButton(isButtonBack),
         surfaceTintColor: Colors.transparent,
-        title: const Text('Eski Soru Tahtaları'),
+        title: const Text('Etkinlikler'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -48,7 +51,7 @@ class AllQAndAPage extends StatelessWidget {
 
   Widget eventInformation(String title, String date, String time, String documentId) {
     return InkWell(
-      onTap: () => Get.to(() => QAndAPage(userName: userName, documentId: documentId, showOldList: false,)),
+      onTap: () => Get.to(() => QAndAPage(userName: globalUserName, documentId: documentId, showOldList: false,)),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -56,6 +59,7 @@ class AllQAndAPage extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 10,
