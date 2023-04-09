@@ -27,6 +27,9 @@ class _DashboardPageState extends State<DashboardPage> {
   String surname="";
   late bool isFieldFlutter;
   late bool isEnglish;
+  String? documentId;
+  String? header;
+  String? subtitle;
 
   @override
   void initState() {
@@ -42,6 +45,23 @@ class _DashboardPageState extends State<DashboardPage> {
         surname = documentSnapshot.get('surname');
       });
     });
+    getLastDocumentTitle();
+  }
+
+  Future<DocumentSnapshot> getLastDocumentTitle() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('questionandanswer')
+        .orderBy('timestamp', descending: true)
+        .limit(1)
+        .get();
+
+    setState(() {
+      documentId = querySnapshot.docs.first.id;
+      header = querySnapshot.docs.first['header'];
+      subtitle = querySnapshot.docs.first['subtitle'];
+    });
+
+    return querySnapshot.docs.first;
   }
 
   Future<void> loadSharedPreferences() async {
@@ -66,7 +86,7 @@ class _DashboardPageState extends State<DashboardPage> {
           clipBehavior: Clip.none,
           child: Column(
             children: [
-              qandaCard(capitalize("$name $surname")),
+              qandaCard(capitalize("$name $surname"), header ?? "", subtitle ?? "", documentId ?? ""),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -173,9 +193,9 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  InkWell qandaCard(String userName) {
+  InkWell qandaCard(String userName, String header, String subtitle, String documentId) {
     return InkWell(
-      onTap: () => Get.to(() => QAndAPage(userName: userName,)),
+      onTap: () => Get.to(() => QAndAPage(userName: userName, documentId: documentId, showOldList: true,)),
       child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -193,11 +213,11 @@ class _DashboardPageState extends State<DashboardPage> {
                             child: Image.asset(AppImages.qanda),
                           ),
                           const SizedBox(width: 20,),
-                          const Expanded(child: Text("Bu akşam saat 20.00'da Unity soru cevap buluşmasını kaçırma!", style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
+                          Expanded(child: Text(header, style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.left,)),
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      Text("Yayında cevaplanmasını istediğin soruları buraya tıklayarak sorabilirsin.", style: TextStyle(color: Colors.white.withAlpha(200)),)
+                      Text(subtitle, style: TextStyle(color: Colors.white.withAlpha(200)),)
                     ],
                   ),
                 ),

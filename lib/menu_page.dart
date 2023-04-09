@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/intro_page.dart';
-
 import 'const.dart';
 import 'courses_page.dart';
 import 'dashboard_page.dart';
