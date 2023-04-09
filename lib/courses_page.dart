@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oyunveuygulamaakademisi/const.dart';
 import 'package:oyunveuygulamaakademisi/coursera_courses_page.dart';
+import 'package:oyunveuygulamaakademisi/webview_page.dart';
 
 import 'menu_page.dart';
 import 'widgets/square_course.dart';
@@ -38,9 +39,9 @@ class CoursesPage extends StatelessWidget {
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
                   children: [
-                    SquareCourseWidget(title: "Flutter İle Uygulama Geliştirme", desc: "Flutter ile Android ve iOS uygulamaları geliştirmeyi öğrenin.", time: 1679, color: AppColors.blue, func: (){}),
-                    SquareCourseWidget(title: "Unity İle Oyun Geliştirme", desc: "Unity kullanarak mobil ve PC platformları için oyun geliştirmeyi öğrenin.", time: 1092, color: AppColors.blue, func: (){}),
-                    SquareCourseWidget(title: "Oyun Sanatı", desc: "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin", time: 2072, color: AppColors.blue, func: (){})
+                    SquareCourseWidget(title: "Flutter İle Uygulama Geliştirme", desc: "Flutter ile Android ve iOS uygulamaları geliştirmeyi öğrenin.", time: 1679, color: AppColors.blue, defaultUrl: "https://www.youtube.com/playlist?list=PLCx8WctAcmdDjCsrka8dLGbeMWdrbP6vY",),
+                    SquareCourseWidget(title: "Unity İle Oyun Geliştirme", desc: "Unity kullanarak mobil ve PC platformları için oyun geliştirmeyi öğrenin.", time: 1092, color: AppColors.blue),
+                    SquareCourseWidget(title: "Oyun Sanatı", desc: "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin", time: 2072, color: AppColors.blue)
                   ],
                 )
               ),
@@ -56,8 +57,8 @@ class CoursesPage extends StatelessWidget {
                     clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
                     children: [
-                      SquareCourseWidget(title: "Proje Yönetim Temelleri", desc: "Proje yönetimi kariyerine adım atmayı; etkili bir proje yöneticisi olmayı... ", time: 0, color: AppColors.red, func: (){}),
-                      SquareCourseWidget(title: "Proje Başlatma: Başarılı Bir Proje Tasarlama", desc: "Proje yönetimi kariyerine adım atmayı; etkili bir proje yöneticisi olmayı", time: 0, color: AppColors.red, func: (){}),
+                      SquareCourseWidget(title: "Proje Yönetim Temelleri", desc: "Proje yönetimi kariyerine adım atmayı; etkili bir proje yöneticisi olmayı... ", time: 0, color: AppColors.red, func: () => Get.to(() => const WebviewPage(title: "Proje Yönetiminin Temelleri", url: "https://www.coursera.org/learn/proje-yonetiminin-temelleri"))),
+                      SquareCourseWidget(title: "Proje Başlatma: Başarılı Bir Proje Tasarlama", desc: "Proje yönetimi kariyerine adım atmayı; etkili bir proje yöneticisi olmayı", time: 0, color: AppColors.red, func: () => Get.to(() => const WebviewPage(title: "Proje Başlatma", url: "https://www.coursera.org/learn/projeyi-baslatma-projeye-basariyla-adim-atma"))),
                       Container(
                         padding: const EdgeInsets.all(15) + const EdgeInsets.only(bottom: 5),
                         width: 200,
@@ -100,10 +101,10 @@ class CoursesPage extends StatelessWidget {
                     clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
                     children: [
-                      SquareCourseWidget(title: "Temel Girişimcilik", desc: "Yeni nesil girişim dünyasında var olmak için çıkacağın bu yolculukta ihtiyacın olacak...", time: 338, color: AppColors.yellow, func: (){}),
-                      SquareCourseWidget(title: "Girişimciler İçin Hukuk", desc: "Yeni nesil girişim dünyasında var olmak için çıkacağın bu yolculukta ihtiyacın olacak...", time: 104, color: AppColors.red, func: (){}),
-                      SquareCourseWidget(title: "Girişimciler İçin Finans", desc: "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin", time: 177, color: AppColors.blue, func: (){}),
-                      SquareCourseWidget(title: "Girişimciler İçin İK", desc: "İş hayatınızı yeniden inşa ederken ihtiyacınız olan becerileri kazanacak, başarılı...", time: 77, color: AppColors.green, func: (){}),
+                      SquareCourseWidget(title: "Temel Girişimcilik", desc: "Yeni nesil girişim dünyasında var olmak için çıkacağın bu yolculukta ihtiyacın olacak...", time: 338, color: AppColors.yellow),
+                      SquareCourseWidget(title: "Girişimciler İçin Hukuk", desc: "Yeni nesil girişim dünyasında var olmak için çıkacağın bu yolculukta ihtiyacın olacak...", time: 104, color: AppColors.red),
+                      SquareCourseWidget(title: "Girişimciler İçin Finans", desc: "2D ve 3D tasarım için en popüler uygulamaları kullanarak oyun sanatını öğrenin", time: 177, color: AppColors.blue),
+                      SquareCourseWidget(title: "Girişimciler İçin İK", desc: "İş hayatınızı yeniden inşa ederken ihtiyacınız olan becerileri kazanacak, başarılı...", time: 77, color: AppColors.green),
                     ],
                   )
               ),
@@ -112,7 +113,7 @@ class CoursesPage extends StatelessWidget {
               const SizedBox(height: 5,),
               Text("Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", style: TextStyle(color: Colors.black.withAlpha(100), fontSize: 12),),
               const SizedBox(height: 10,),
-              SquareCourseWidget(title: "Yazılımcılar İçin İngilizce Eğitimi", desc: "Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", time: 1693, color: AppColors.green, func: (){}, width: double.infinity,)
+              SquareCourseWidget(title: "Yazılımcılar İçin İngilizce Eğitimi", desc: "Kariyerini teknoloji sektöründe kurarken faydalanabileceğin, oyun ve uygulama geliştirme alanında uluslararası standart ve trendleri takip edebilmeni kolaylaştıracak İngilizce eğitimlerine katıl.", time: 1693, color: AppColors.green, width: double.infinity,)
             ],
           ),
         ),

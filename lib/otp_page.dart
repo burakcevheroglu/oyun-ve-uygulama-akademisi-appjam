@@ -65,9 +65,12 @@ class OTPPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                "TEKRAR GÖNDER",
-                style: TextStyle(color: AppColors.red),
+              InkWell(
+                onTap: () => Get.back(),
+                child: Text(
+                  "TEKRAR GÖNDER",
+                  style: TextStyle(color: AppColors.red),
+                ),
               ),
               const SizedBox(
                 height: 30,
@@ -95,8 +98,6 @@ class OTPPage extends StatelessWidget {
 
                         if (ouaDoc.exists) {
                           firebaseToShared();
-
-
                           Get.offAll(const DashboardPage());
                         } else {
                           Get.offAll(const RegisterConfig());

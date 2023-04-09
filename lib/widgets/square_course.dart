@@ -1,19 +1,23 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:oyunveuygulamaakademisi/course_headers_page.dart';
 
 import '../const.dart';
 
 class SquareCourseWidget extends StatelessWidget {
   const SquareCourseWidget({
-    super.key, required this.title, required this.desc, required this.time, required this.color, required this.func, this.width = 200
+    super.key, required this.title, required this.desc, required this.time, required this.color, this.func, this.width = 200,
+    this.defaultUrl = "https://www.youtube.com/playlist?list=PLeqL-9zPf1PQxdGvLsLbJhQ6lzfqV5aIt"
   });
 
   final String title;
   final String desc;
   final int time;
   final Color color;
-  final Function func;
+  final Function? func;
   final double width;
+  final String defaultUrl;
 
 
   @override
@@ -43,7 +47,7 @@ class SquareCourseWidget extends StatelessWidget {
             Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
             Expanded(child: SingleChildScrollView(child: Text(desc, style: TextStyle(fontSize: 12, color: Colors.white.withAlpha(150))))),
             InkWell(
-              onTap: () => func(),
+              onTap: (func != null) ? () => func!() : () => Get.to(() => MyPlaylistPage(playlistUrl: defaultUrl)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [

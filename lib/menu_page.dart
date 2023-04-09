@@ -15,6 +15,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         centerTitle: true,
         leading: const SizedBox(),
         title: const Text('Akademi Menü'),
@@ -27,6 +28,7 @@ class MenuPage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: menuItems.length,
               itemBuilder: (context, index){
                 return ListTile(

@@ -246,14 +246,14 @@ class _DashboardPageState extends State<DashboardPage> {
                 width: 80,
                 height: 80,
                 child: CircularProgressIndicator(
-                  value: .75,
+                  value: .55,
                   strokeWidth: 10,
                   color: AppColors.yellow,
                   backgroundColor: AppColors.grey,
                 ),
               ),
               const Text(
-                '75%',
+                '55%',
                 style: TextStyle(color: Colors.white, fontSize: 18),
               )
             ],
@@ -268,7 +268,7 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisSize: MainAxisSize.max,
               children: const [
                 Text(
-                  "Mart Ayı Bitiyor!",
+                  "Nisan Ayı Başladı!",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -279,7 +279,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 Expanded(
                     child: Text(
-                  'Mart ayı görevlerini tamamlamana çok az kaldı!',
+                  'Nisan ayı görevlerini tamamlamana çok az kaldı',
                   style: TextStyle(color: Colors.white),
                 ))
               ],

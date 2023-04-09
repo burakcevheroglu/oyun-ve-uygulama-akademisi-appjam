@@ -57,14 +57,9 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 40,),
                 const ColoredButtonWidget(type: ColoredButtonEnums.login),
                 const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Hesabın yok mu?'),
-                    const SizedBox(width: 5,),
-                    Text('Kayıt ol.', style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold),)
-                  ],
-                )
+                const Text('Hesabın yok mu?'),
+                const SizedBox(width: 5,),
+                Text('Kayıt olmak için devam et', style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.bold),)
 
               ],
             ),

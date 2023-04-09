@@ -31,7 +31,7 @@ class ImportantLinks extends StatelessWidget {
                 onTap: () => Get.to(() => WebviewPage(title: data['title'], url: data['link'])),
                 leading: const Icon(Icons.link),
                 title: Text(data['title'] ?? ''),
-                subtitle: Text(data['link'] ?? ''),
+                subtitle: Text(data['link'] ?? '', maxLines: 2, overflow: TextOverflow.ellipsis,),
               );
             },
           );

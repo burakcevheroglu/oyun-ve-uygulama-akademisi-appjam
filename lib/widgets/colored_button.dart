@@ -57,6 +57,7 @@ class ColoredButtonWidget extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => const IntroPage()),
                               (Route<dynamic> route) => false);
+                      showSnackbar(context, error.toString());
                     },
                     codeSent: (id, token) {
                       verifyId = id;
@@ -65,7 +66,10 @@ class ColoredButtonWidget extends StatelessWidget {
                       phoneController.text="";
                       Get.to(() => const OTPPage(), transition: Transition.cupertinoDialog);
                     },
-                    codeAutoRetrievalTimeout: (id) => print("zaman aşımına uğradı"),
+                    codeAutoRetrievalTimeout: (id) {
+                      showSnackbar(context, "Kod zaman aşımına uğradı, lütfen tekrar giriş yap.");
+                      Get.back();
+                    },
                     timeout: const Duration(seconds: _smsCodeTimeout)
                 );
               }
